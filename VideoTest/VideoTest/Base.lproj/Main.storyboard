@@ -183,6 +183,7 @@
                         <outlet property="currentTimeLabel" destination="BQB-zV-p5p" id="LKC-Kf-bPU"/>
                         <outlet property="durationLabel" destination="QTy-Ve-JoX" id="Qs7-te-H6Q"/>
                         <outlet property="forwardButton" destination="tAS-L1-i5f" id="ebS-UR-Qo5"/>
+                        <outlet property="noVideoLabel" destination="dtJ-Or-d4C" id="LM3-Ph-1Y8"/>
                         <outlet property="playButton" destination="jyv-8G-xDB" id="fu6-Zr-Isg"/>
                         <outlet property="screenButton" destination="P21-gK-0Ge" id="75q-fZ-hex"/>
                         <outlet property="timeSlider" destination="j6M-eL-ZEy" id="tIU-k2-K7O"/>

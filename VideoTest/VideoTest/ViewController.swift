@@ -24,6 +24,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var volumeButton: UIButton!
     @IBOutlet weak var screenButton: UIButton!
     
+    @IBOutlet weak var noVideoLabel: UILabel!
+    
+    
     var player: AVPlayer!
     var playerLayer: AVPlayerLayer!
     var isVideoPlaying = false
@@ -41,7 +44,23 @@ class ViewController: UIViewController {
     
     @IBAction func searchButtonClick(_ sender: UIButton) {
         
-        //let videoUrl = URL(string: urlTextInput.text!)
+        guard let urlInput = urlTextInput.text else { return }
+        
+        let videoUrl = URL(string: urlInput)
+        
+        player = AVPlayer(url: videoUrl!)
+
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resize
+        playerLayer.frame = videoView.bounds
+        videoView.layer.addSublayer(playerLayer)
+        
+        //player.play()
+        
+        player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
+        addTimeObserver()
+        
+        noVideoLabel.isHidden = true
         
     }
     
@@ -60,13 +79,13 @@ class ViewController: UIViewController {
         
         timeSlider.minimumTrackTintColor = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1)
         
-        let videoUrl = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
+        //let videoUrl = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
         
-        player = AVPlayer(url: videoUrl!)
+        //player = AVPlayer(url: videoUrl!)
         
-        //監測時間
-        player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
-        addTimeObserver()
+        //監測時間 OK
+//        player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
+//        addTimeObserver()
         
         
         //        For AVPlayer:
@@ -78,11 +97,12 @@ class ViewController: UIViewController {
         //        self.view.layer.addSublayer(playerLayer)
         //        player.play()
         
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resize
-        playerLayer.frame = videoView.bounds
-        videoView.layer.addSublayer(playerLayer)
-        player.play()
+        //以下是可以的
+//        playerLayer = AVPlayerLayer(player: player)
+//        playerLayer.videoGravity = .resize
+//        playerLayer.frame = videoView.bounds
+//        videoView.layer.addSublayer(playerLayer)
+//        player.play()
         
         
     }
@@ -245,7 +265,8 @@ class ViewController: UIViewController {
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.setControlButtonColor(color: UIColor.white)
                 self.setTimeLabelColor(color: UIColor.white)
-
+                
+                self.playerLayer.frame = self.videoView.bounds
                 
             }
             print("Device is landscape")
@@ -261,6 +282,8 @@ class ViewController: UIViewController {
             navigationController?.setNavigationBarHidden(false, animated: false)
             setControlButtonColor(color: UIColor.black)
             setTimeLabelColor(color: UIColor.black)
+            
+            self.playerLayer.frame = self.videoView.bounds
             
         }
 
@@ -357,10 +380,10 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        playerLayer.frame = videoView.bounds
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        playerLayer.frame = videoView.bounds
+//    }
     
 }
 
