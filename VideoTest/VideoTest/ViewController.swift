@@ -47,6 +47,9 @@ class ViewController: UIViewController {
     
     @IBAction func searchButtonClick(_ sender: UIButton) {
         
+        //https://www.jianshu.com/p/29bfc7dc401a
+        //需增加 status 監控
+        
         guard let urlInput = urlTextInput.text else { return }
         
         let videoUrl = URL(string: urlInput)
@@ -299,6 +302,7 @@ class ViewController: UIViewController {
             //self.playerLayer.frame = self.videoView.bounds
              self.playerLayer.frame = originFrame
             
+            //按上面的fullScreenPressed 也會跑這行 self.playerLayer.frame = originFrame
         }
 
         
