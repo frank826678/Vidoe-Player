@@ -31,6 +31,9 @@ class ViewController: UIViewController {
     var playerLayer: AVPlayerLayer!
     var isVideoPlaying = false
     
+    var originFrame: CGRect =  CGRect(x: 0, y: 0, width: 0, height: 0)
+    //let rect  = CGRect(x: 0, y: 0, width: 100, height: 100)
+    
     let playButtonImage = #imageLiteral(resourceName: "btn_play").withRenderingMode(.alwaysTemplate)
     let pauseButtonImage = #imageLiteral(resourceName: "btn_stop").withRenderingMode(.alwaysTemplate)
     let forwardButtonImage = #imageLiteral(resourceName: "btn_play_forward").withRenderingMode(.alwaysTemplate)
@@ -53,6 +56,9 @@ class ViewController: UIViewController {
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resize
         playerLayer.frame = videoView.bounds
+        
+        originFrame = videoView.bounds
+        
         videoView.layer.addSublayer(playerLayer)
         
         //player.play()
@@ -221,11 +227,18 @@ class ViewController: UIViewController {
             
             screenButton.setImage(smallScreenButtonImage, for: .normal)
             
+            setControlButtonColor(color: UIColor.white)
+            setTimeLabelColor(color: UIColor.white)
+            
+            
         } else {
             
             AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
             
             screenButton.setImage(fullScreenButtonImage, for: .normal)
+            
+            setControlButtonColor(color: UIColor.black)
+            setTimeLabelColor(color: UIColor.black)
             
         }
     }
@@ -283,7 +296,8 @@ class ViewController: UIViewController {
             setControlButtonColor(color: UIColor.black)
             setTimeLabelColor(color: UIColor.black)
             
-            self.playerLayer.frame = self.videoView.bounds
+            //self.playerLayer.frame = self.videoView.bounds
+             self.playerLayer.frame = originFrame
             
         }
 
