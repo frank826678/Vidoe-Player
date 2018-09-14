@@ -52,7 +52,7 @@
                                             <constraint firstAttribute="height" constant="24" id="FGo-0z-Sju"/>
                                             <constraint firstAttribute="width" constant="24" id="ZDy-8V-ZN6"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="btn_volume_up"/>
+                                        <state key="normal" image="btn_volume_up"/>
                                         <connections>
                                             <action selector="voiceBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Zf-Xc-2YJ"/>
                                         </connections>
@@ -63,7 +63,7 @@
                                             <constraint firstAttribute="width" constant="24" id="6qA-dC-9XA"/>
                                             <constraint firstAttribute="height" constant="24" id="9ro-tb-uXa"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="btn_play_rewind"/>
+                                        <state key="normal" image="btn_play_rewind"/>
                                         <connections>
                                             <action selector="backwardBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3FM-io-lI3"/>
                                         </connections>
@@ -74,7 +74,7 @@
                                             <constraint firstAttribute="width" constant="24" id="Get-Yw-R3a"/>
                                             <constraint firstAttribute="height" constant="24" id="KSw-Cc-hrV"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="btn_play_forward"/>
+                                        <state key="normal" image="btn_play_forward"/>
                                         <connections>
                                             <action selector="forwardBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TU1-8X-aYu"/>
                                         </connections>
@@ -85,7 +85,7 @@
                                             <constraint firstAttribute="height" constant="24" id="4ps-mI-X7r"/>
                                             <constraint firstAttribute="width" constant="24" id="wCS-qx-chZ"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="btn_fullScreen_exit"/>
+                                        <state key="normal" image="btn_fullScreen_exit"/>
                                         <connections>
                                             <action selector="fullScreenPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f5n-8y-mKd"/>
                                         </connections>
@@ -96,7 +96,7 @@
                                             <constraint firstAttribute="width" constant="24" id="9ke-3b-eUD"/>
                                             <constraint firstAttribute="height" constant="24" id="eZE-1R-oNc"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="btn_play"/>
+                                        <state key="normal" image="btn_play"/>
                                         <connections>
                                             <action selector="playBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1oq-dN-u0g"/>
                                         </connections>
@@ -126,7 +126,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="1a5-6d-t8P"/>
                                     <constraint firstAttribute="trailing" secondItem="QTy-Ve-JoX" secondAttribute="trailing" constant="10" id="BYB-kf-hK2"/>

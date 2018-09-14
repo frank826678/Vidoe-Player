@@ -41,6 +41,8 @@ class ViewController: UIViewController {
     
     @IBAction func searchButtonClick(_ sender: UIButton) {
         
+        //let videoUrl = URL(string: urlTextInput.text!)
+        
     }
     
     
@@ -51,6 +53,12 @@ class ViewController: UIViewController {
         setupNavigationUI()
         
         //let videoUrl = URL(string: urlTextInput.text!)
+        
+        //timeSlider.thumbTintColor = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1)
+        //timeSlider.maximumTrackTintColor = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1)
+        
+        
+        timeSlider.minimumTrackTintColor = #colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1)
         
         let videoUrl = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
         
@@ -214,8 +222,8 @@ class ViewController: UIViewController {
         
        // currentTimeLabel.text = String(player.currentItem!.currentTime())
        
-        currentTimeLabel.text = getTimeString(from: player.currentItem!.currentTime())
-        durationLabel.text = getTimeString(from: (player.currentItem?.duration)!)
+        currentTimeLabel.text = getTimeCMTToString(from: player.currentItem!.currentTime())
+        durationLabel.text = getTimeCMTToString(from: (player.currentItem?.duration)!)
         
     }
     
@@ -233,6 +241,7 @@ class ViewController: UIViewController {
 //                self.layer?.videoGravity = AVLayerVideoGravityResizeAspectFill
 //                self.view.layer.addSublayer(self.layer!)
                 
+                //下斷點會進去跑 .white
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.setControlButtonColor(color: UIColor.white)
                 self.setTimeLabelColor(color: UIColor.white)
@@ -267,7 +276,7 @@ class ViewController: UIViewController {
             self?.timeSlider.maximumValue = Float(currentItem.duration.seconds)
             self?.timeSlider.minimumValue = 0
             self?.timeSlider.value = Float(currentItem.currentTime().seconds)
-            self?.currentTimeLabel.text = self?.getTimeString(from: currentItem.currentTime())
+            self?.currentTimeLabel.text = self?.getTimeCMTToString(from: currentItem.currentTime())
         })
         
     }
@@ -275,11 +284,11 @@ class ViewController: UIViewController {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "duration", let duration = player.currentItem?.duration.seconds, duration > 0.0 {
-            self.durationLabel.text = getTimeString(from: player.currentItem!.duration)
+            self.durationLabel.text = getTimeCMTToString(from: player.currentItem!.duration)
         }
     }
     
-    func getTimeString(from time: CMTime) -> String {
+    func getTimeCMTToString(from time: CMTime) -> String {
         
         let totalSeconds = CMTimeGetSeconds(time)
         let hours = Int(totalSeconds/3600)
@@ -346,6 +355,11 @@ class ViewController: UIViewController {
                 
         }
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer.frame = videoView.bounds
     }
     
 }
